@@ -60,7 +60,7 @@ public class Grappler : MonoBehaviour
             webObject.transform.rotation = Quaternion.Euler(0.0f, 0.0f, Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg);
             webObject.transform.localScale = webObject.transform.localScale
                                                  + new Vector3(0.25f, 0.0f, 0.0f);
-
+            webObject.transform.position = grappleSpawn.position + new Vector3(rotation.x, rotation.y, 0.0f) * 0.5f;
             yield return null;
         }
 
