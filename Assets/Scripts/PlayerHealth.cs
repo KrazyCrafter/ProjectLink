@@ -31,4 +31,11 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(Death());
         }
     }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Threat")
+        {
+            TakeDamage(3);
+        }
+    }
 }
