@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: GridPaintPaletteWindow
+  m_Name: SceneHierarchyWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -192,14 +192,14 @@ MonoBehaviour:
     y: 0
     width: 517
     height: 769
-  m_MinSize: {x: 357, y: 226}
+  m_MinSize: {x: 201, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 12}
+  m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
   - {fileID: 12}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -253,7 +253,7 @@ MonoBehaviour:
   - {fileID: 17}
   - {fileID: 18}
   m_Selected: 0
-  m_LastSelected: 0
+  m_LastSelected: 1
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -784,18 +784,12 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs:
-      - m_Data: 53560
+      m_SelectedIDs: []
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -46714
-      - m_Data: -39900
-      - m_Data: -37648
-      - m_Data: -35728
-      - m_Data: -2494
-      - m_Data: -2338
-      - m_Data: -1664
+      - m_Data: -2414
+      - m_Data: -1362
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1486,9 +1480,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 9.331583, y: -4.091931, z: -0.0789303}
+    m_Target: {x: 154.2427, y: -22.344604, z: -0.06434269}
     speed: 2
-    m_Value: {x: 9.331583, y: -4.091931, z: -0.0789303}
+    m_Value: {x: 154.21075, y: -22.120924, z: -0.07525282}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1538,9 +1532,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 24.612267
+    m_Target: 23.153666
     speed: 2
-    m_Value: 24.612267
+    m_Value: 24.244677
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1623,7 +1617,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Prefabs/PrototypeDesigns
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1633,7 +1627,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Prefabs/PrototypeDesigns
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\ProjectLink
   m_LockTracker:
@@ -1642,13 +1636,13 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 55172
+    - m_Data: 55536
     m_LastClickedID:
-      m_Data: 55172
+      m_Data: 55536
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 53548
-    - m_Data: 54884
+    - m_Data: 55062
+    - m_Data: 55370
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1682,7 +1676,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 54884
+    - m_Data: 55062
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
