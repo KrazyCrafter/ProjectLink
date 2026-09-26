@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3327081780169082614}
   - component: {fileID: 1169330457557248465}
   - component: {fileID: 6667569134637865757}
+  - component: {fileID: 4054533748075655014}
   - component: {fileID: 3008091905571595002}
   - component: {fileID: 5777361699615100429}
   - component: {fileID: 1540594745435799581}
@@ -147,6 +148,18 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &4054533748075655014
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936590004904011770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a8d4c1307cec649b84281892defdd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Grappler
 --- !u!114 &3008091905571595002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,6 +217,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f5063e26-aff7-4410-9e4e-e1de41f86e71
     m_ActionName: 'Player/Jump[/Keyboard/space]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4054533748075655014}
+        m_TargetAssemblyTypeName: Grappler, Assembly-CSharp
+        m_MethodName: MousePosition
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e6fd633e-0269-4c56-9707-d0e725ff819b
+    m_ActionName: 'Player/Point[/Mouse/position]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Key&Mouse
   m_DefaultActionMap: Player
