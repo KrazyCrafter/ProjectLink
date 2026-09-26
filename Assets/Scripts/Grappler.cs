@@ -21,4 +21,12 @@ public class Grappler : MonoBehaviour
     {
         mousePos = context.ReadValue<Vector2>();
     }
+
+    public void Grapple(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            // Debug.Log("Grapple!");
+        }
+    }
 }

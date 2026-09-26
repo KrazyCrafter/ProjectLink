@@ -233,6 +233,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: e6fd633e-0269-4c56-9707-d0e725ff819b
     m_ActionName: 'Player/Point[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4054533748075655014}
+        m_TargetAssemblyTypeName: Grappler, Assembly-CSharp
+        m_MethodName: Grapple
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a8555369-3808-42e1-917d-a41c7cbdc890
+    m_ActionName: 'Player/Click[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: Key&Mouse
   m_DefaultActionMap: Player
