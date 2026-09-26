@@ -156,6 +156,9 @@ MonoBehaviour:
     m_Bits: 64
   LeftEdge: 108
   RightEdge: 195
+  Visible:
+    serializedVersion: 2
+    m_Bits: 113
 --- !u!50 &4813008485216644100
 Rigidbody2D:
   serializedVersion: 5

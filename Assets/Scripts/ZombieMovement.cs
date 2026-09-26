@@ -22,23 +22,32 @@ public class ZombieMovement : MonoBehaviour
     private bool isGrounded;
 
     public float Destination;
-    public float DestTimer;
+    [SerializeField] private float DestTimer;
     public bool SeeSpider;
-    public Transform Eye;
-    public LayerMask Obstacles;
+    [SerializeField] private Transform Eye;
+    [SerializeField] private LayerMask Obstacles;
 
-    public int LeftEdge;
-    public int RightEdge;
+    [SerializeField] private int LeftEdge;
+    [SerializeField] private int RightEdge;
+
+    private GameObject Spiderlion;
+    [SerializeField] private LayerMask Visible;
+    private float AttackTimer;
+    private bool Attacked;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Attacked = false;
         rb = GetComponent<Rigidbody2D>();
         Destination = Random.Range(LeftEdge, RightEdge);
+        Spiderlion = GameObject.Find("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        SpySpider();
         if(!SeeSpider)
         {
             DestTimer += Time.deltaTime;
@@ -49,8 +58,48 @@ public class ZombieMovement : MonoBehaviour
             }
         }
         GroundCheck();
-        ProcessMovement();
+        if(Attacked)
+        {
+            AttackTimer += Time.deltaTime;
+            if(AttackTimer > 1)
+            {
+                Attacked = false;
+                AttackTimer = 0;
+            }
+        }
+        if(SeeSpider && Vector2.Distance(transform.position, Spiderlion.transform.position) < 1.5f)
+        {
+            Attack();
+        }
+        else
+        {
+            ProcessMovement();
+        }
         ProcessGravity();
+    }
+    private void SpySpider()
+    {
+        Debug.DrawRay(Eye.position, Vector2.Normalize(Spiderlion.transform.position - Eye.position), Color.green, 20f);
+        RaycastHit2D HitObject = Physics2D.Raycast(Eye.position, Vector2.Normalize(Spiderlion.transform.position - Eye.position), 20, Visible);
+        if(HitObject)
+        {
+            //Debug.Log("Saw " + HitObject.collider.name);
+            if(HitObject.collider.gameObject == Spiderlion)
+            {
+                //Debug.Log("Saw Spider");
+                SeeSpider = true;
+                Destination = Spiderlion.transform.position.x;
+                DestTimer = 0;
+            }
+            else
+            {
+                SeeSpider = false;
+            }
+        }
+        else
+        {
+            SeeSpider = false;
+        }
     }
 
     // Processes the movement of the player
@@ -127,5 +176,14 @@ public class ZombieMovement : MonoBehaviour
         // Draws GroundCheck in green.
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckArea);
+    }
+
+    public void Attack()
+    {
+        if (!Attacked)
+        {
+            Spiderlion.GetComponent<PlayerHealth>().TakeDamage(1);
+            Attacked = true;
+        }
     }
 }
