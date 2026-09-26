@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 1
   m_Script: {fileID: 12006, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: SceneHierarchyWindow
+  m_Name: GridPaintPaletteWindow
   m_EditorClassIdentifier: 
   m_Children: []
   m_Position:
@@ -192,14 +192,14 @@ MonoBehaviour:
     y: 0
     width: 517
     height: 769
-  m_MinSize: {x: 201, y: 226}
+  m_MinSize: {x: 357, y: 226}
   m_MaxSize: {x: 4001, y: 4026}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 12}
   m_Panes:
   - {fileID: 15}
   - {fileID: 12}
-  m_Selected: 0
-  m_LastSelected: 1
+  m_Selected: 1
+  m_LastSelected: 0
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -788,8 +788,9 @@ MonoBehaviour:
       m_LastClickedID:
         m_Data: 0
       m_ExpandedIDs:
-      - m_Data: -2414
-      - m_Data: -1362
+      - m_Data: -12406
+      - m_Data: -10378
+      - m_Data: -1612
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1480,9 +1481,9 @@ MonoBehaviour:
   m_AudioPlay: 0
   m_DebugDrawModesUseInteractiveLightBakingData: 0
   m_Position:
-    m_Target: {x: 154.2427, y: -22.344604, z: -0.06434269}
+    m_Target: {x: 35.527817, y: 16.404259, z: -0.15309155}
     speed: 2
-    m_Value: {x: 154.21075, y: -22.120924, z: -0.07525282}
+    m_Value: {x: 35.527817, y: 16.404259, z: -0.15309155}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -1532,9 +1533,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 23.153666
+    m_Target: 32.02891
     speed: 2
-    m_Value: 24.244677
+    m_Value: 32.02891
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1617,7 +1618,7 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs/PrototypeDesigns
+    - Assets/Scenes
     m_Globs: []
     m_ProductIds: 
     m_AnyWithAssetOrigin: 0
@@ -1627,7 +1628,7 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs/PrototypeDesigns
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\ProjectLink
   m_LockTracker:
@@ -1636,13 +1637,14 @@ MonoBehaviour:
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs:
-    - m_Data: 55536
+    - m_Data: 55008
     m_LastClickedID:
-      m_Data: 55536
+      m_Data: 55008
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 55062
-    - m_Data: 55370
+    - m_Data: 54718
+    - m_Data: 55004
+    - m_Data: 55012
     - m_Data: 1000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -1676,7 +1678,7 @@ MonoBehaviour:
       m_Data: 0
     m_ExpandedIDs:
     - m_Data: 0
-    - m_Data: 55062
+    - m_Data: 54718
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1703,14 +1705,16 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: []
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs:
+    - m_Data: 53404
+    m_LastClickedInstanceID: 53404
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs:
     - m_Data: 87246
     - m_Data: 87230
     - m_Data: 54910
     - m_Data: 55522
+    - m_Data: 55710
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
