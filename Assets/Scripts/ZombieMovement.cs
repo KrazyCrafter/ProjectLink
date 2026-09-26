@@ -33,8 +33,7 @@ public class ZombieMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Destination = transform.position.x;
-        Destination = transform.position.x + Random.Range(-10, 10);
+        Destination = Random.Range(LeftEdge, RightEdge);
     }
 
     // Update is called once per frame
@@ -46,15 +45,7 @@ public class ZombieMovement : MonoBehaviour
             if(DestTimer > 5 || Mathf.Abs(Destination - transform.position.x) < 2)
             {
                 DestTimer = 0;
-                Destination = transform.position.x + Random.Range(-10, 10);
-                if(Destination < LeftEdge)
-                {
-                    Destination = transform.position.x + Random.Range(0, 10);
-                }
-                else if(Destination > RightEdge)
-                {
-                    Destination = transform.position.x + Random.Range(-10, 0);
-                }
+                Destination = Random.Range(LeftEdge, RightEdge);
             }
         }
         GroundCheck();
