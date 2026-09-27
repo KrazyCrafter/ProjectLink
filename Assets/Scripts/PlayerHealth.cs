@@ -31,6 +31,8 @@ public class PlayerHealth : MonoBehaviour
         Debug.Log("Died");
         isDead = true;
         GetComponent<Grappler>().RemoveWeb();
+        GetComponent<Grappler>().enabled = false;
+        GetComponent<Movement>().enabled = false;
         TimesDied++;
         yield return new WaitForSeconds(2);
         Respawn();
@@ -51,6 +53,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Altar")
         {
+            MainMenuScript.LevelsBeaten = Level;
             if(Level < 6)
             {
                 SceneManager.LoadScene(Level + 1);

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -66,7 +65,7 @@ public class Movement : MonoBehaviour
     private void ProcessMovement()
     {
         Vector2 velocity = transform.right * horizontal * moveSpeed;
-        if(!isGrounded && (Math.Abs(rb.linearVelocityX) > Math.Abs(velocity.x)))
+        if(grappler.isGrappling)
         {
             // if(transform.position.y > dj.connectedAnchor.y)
             // {

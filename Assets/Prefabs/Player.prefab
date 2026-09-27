@@ -323,7 +323,7 @@ MonoBehaviour:
   isGrappling: 0
   grappleLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 1088
 --- !u!114 &3008091905571595002
 MonoBehaviour:
   m_ObjectHideFlags: 0
