@@ -1,10 +1,10 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private DistanceJoint2D dj;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 8f;
@@ -24,16 +24,19 @@ public class Movement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
 
+    [SerializeField] private Grappler grappler;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dj = GetComponent<DistanceJoint2D>();
+        grappler = GetComponent<Grappler>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GroundCheck();
+        canJump = GroundCheck();
         ProcessMovement();
         ProcessGravity();
     }
@@ -50,8 +53,33 @@ public class Movement : MonoBehaviour
     private void ProcessMovement()
     {
         Vector2 velocity = transform.right * horizontal * moveSpeed;
+        if(grappler.isGrappling)
+        {
+            if(transform.position.y > dj.connectedAnchor.y)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
+            if(velocity.x == 0)
+            {
+                rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
+            }
+            else
+            {
+                if(velocity.x < 0)
+                {
+                    rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 5);
+                }
+                else if (velocity.x > 0)
+                {
+                    rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 5);
+                }
 
-        rb.linearVelocityX = velocity.x;
+            }
+        }
+        else
+        {
+            rb.linearVelocityX = velocity.x;
+        }
     }
 
     // Reads jump input
@@ -88,7 +116,6 @@ public class Movement : MonoBehaviour
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckArea, 0, groundLayer))
         {
             // Debug.Log("isGrounded == true");
-            canJump = true;
             return isGrounded = true;
         }
         // Debug.Log("isGrounded == false");
@@ -100,5 +127,12 @@ public class Movement : MonoBehaviour
         // Draws GroundCheck in green.
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckArea);
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.layer == groundLayer)
+        {
+            rb.linearVelocityX = 0.0f;
+        }
     }
 }
