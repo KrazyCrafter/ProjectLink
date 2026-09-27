@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private DistanceJoint2D dj;
     private SpriteRenderer sr;
+    private Animator playerAnimator;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 8f;
@@ -36,6 +37,7 @@ public class Movement : MonoBehaviour
         dj = GetComponent<DistanceJoint2D>();
         sr = GetComponent<SpriteRenderer>();
         grappler = GetComponent<Grappler>();
+        playerAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,7 @@ public class Movement : MonoBehaviour
         ProcessMovement();
         ProcessLastGoodPos();
         ProcessGravity();
+        PlayAnimator();
     }
 
     // Reads up/down/left/right input
@@ -55,7 +58,7 @@ public class Movement : MonoBehaviour
         horizontal = movement.x;
 
         if(horizontal != 0f)
-            sr.flipY = horizontal < 0;
+            sr.flipX = horizontal < 0;
     }
 
     // Processes the movement of the player
@@ -86,14 +89,19 @@ public class Movement : MonoBehaviour
             // }
 
             if(grappler.isGrappling)
-                rb.AddForceX(velocity.x/3);
-            else
-                rb.linearVelocityX -= Time.deltaTime / 7.5f * rb.linearVelocityX;
+            {
+                rb.AddForceX(velocity.x);
+            }
         }
         else
         {
             rb.linearVelocityX = velocity.x;
         }
+
+        rb.linearVelocityY = Mathf.Min(rb.linearVelocityY, 15);
+
+        
+        // Debug.Log("velocity: " + rb.linearVelocity);
     }
 
     // Reads jump input
@@ -146,6 +154,63 @@ public class Movement : MonoBehaviour
         else
         {
             lastGoodPos = transform.position;
+        }
+    }
+
+    private void PlayAnimator()
+    {
+        if(PlayerHealth.Instance.isDead)
+        {
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isSwinging", false);
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isFalling", false);
+
+            playerAnimator.SetBool("isDead", true);
+        }
+        else if(Mathf.Abs(rb.linearVelocityX) > 0f && isGrounded)
+        {
+            playerAnimator.SetBool("isSwinging", false);
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isFalling", false);
+            playerAnimator.SetBool("isDead", false);
+
+            playerAnimator.SetBool("isRunning", true);
+        }
+        else if(grappler.isGrappling)
+        {
+            playerAnimator.SetBool("isFalling", false);
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isDead", false);
+
+            playerAnimator.SetBool("isSwinging", true);
+        }
+        else if(rb.linearVelocityY < 0f && !isGrounded && !grappler.isGrappling)
+        {
+            playerAnimator.SetBool("isSwinging", false);
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isDead", false);
+
+            playerAnimator.SetBool("isFalling", true);
+        }
+        else if(!canJump && canCancelJump)
+        {
+            playerAnimator.SetBool("isSwinging", false);
+            playerAnimator.SetBool("isFalling", false);
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isDead", false);
+            
+            playerAnimator.SetBool("isJumping", true);
+        }
+        else
+        {
+            playerAnimator.SetBool("isDead", false);
+            playerAnimator.SetBool("isFalling", false);
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isSwinging", false);
         }
     }
 
