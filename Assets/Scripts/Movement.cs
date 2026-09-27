@@ -36,7 +36,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GroundCheck();
+        canJump = GroundCheck();
         ProcessMovement();
         ProcessGravity();
     }
@@ -116,7 +116,6 @@ public class Movement : MonoBehaviour
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckArea, 0, groundLayer))
         {
             // Debug.Log("isGrounded == true");
-            canJump = true;
             return isGrounded = true;
         }
         // Debug.Log("isGrounded == false");
