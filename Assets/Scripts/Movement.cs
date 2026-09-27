@@ -69,22 +69,24 @@ public class Movement : MonoBehaviour
             //     rb.linearVelocity = Vector2.zero;
             // }
 
-            if(velocity.x == 0)
-            {
-                rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
-            }
-            else
-            {
-                if(velocity.x < 0)
-                {
-                    rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 5);
-                }
-                else if (velocity.x > 0)
-                {
-                    rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 5);
-                }
+            // if(velocity.x == 0)
+            // {
+            //     rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
+            // }
+            // else
+            // {
+            //     if(velocity.x < 0)
+            //     {
+            //         rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 5);
+            //     }
+            //     else if (velocity.x > 0)
+            //     {
+            //         rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 5);
+            //     }
+            // }
 
-            }
+            rb.AddForceX(velocity.x);
+
         }
         else
         {
