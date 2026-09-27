@@ -21,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Died");
         GetComponent<Grappler>().RemoveWeb();
+        GetComponent<Grappler>().enabled = false;
+        GetComponent<Movement>().enabled = false;
         TimesDied++;
         yield return new WaitForSeconds(2);
         Respawn();
