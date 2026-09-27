@@ -457,7 +457,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8}
   m_AnchorMax: {x: 0.1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.2150116}
+  m_AnchoredPosition: {x: 0, y: 0.21502686}
   m_SizeDelta: {x: -0.0000076294, y: 0.42998}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5433009454991639771
@@ -619,7 +619,7 @@ MonoBehaviour:
   jumpPower: 10
   baseGravity: 2
   groundCheckPos: {fileID: 70278476430739653}
-  groundCheckArea: {x: 0.35, y: 0.05}
+  groundCheckArea: {x: 0.4, y: 0.05}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -748,7 +748,23 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: a8555369-3808-42e1-917d-a41c7cbdc890
     m_ActionName: 'Player/Click[/Mouse/leftButton]'
-  m_NeverAutoSwitchControlSchemes: 1
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2954042072164879741}
+        m_TargetAssemblyTypeName: PlayerHealth, Assembly-CSharp
+        m_MethodName: Respawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 3dd7413e-8887-46a6-ac7b-3ce81cdcfef3
+    m_ActionName: 'Player/Reset[/Keyboard/r]'
+  m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: Key&Mouse
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
