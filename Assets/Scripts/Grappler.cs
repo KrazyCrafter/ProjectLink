@@ -41,6 +41,10 @@ public class Grappler : MonoBehaviour
     {
         if(!context.Equals(null))
             mousePos = Camera.main.ScreenToWorldPoint(context.ReadValue<Vector2>());
+        if(Vector2.Distance(mousePos, transform.position) > 10)
+        {
+            mousePos = new Vector2(transform.position.x, transform.position.y) + Vector2.Normalize(mousePos - new Vector2(transform.position.x, transform.position.y)) * 10;
+        }
     }
 
     public void Grapple(InputAction.CallbackContext context)

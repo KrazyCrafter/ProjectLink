@@ -61,11 +61,11 @@ public class Movement : MonoBehaviour
             {
                 if(velocity.x < 0)
                 {
-                    rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 3);
+                    rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 5);
                 }
                 else if (velocity.x > 0)
                 {
-                    rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 3);
+                    rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 5);
                 }
 
             }
@@ -125,10 +125,6 @@ public class Movement : MonoBehaviour
     }
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(grappler.isGrappling)
-        {
-            Debug.Log("GrappleCollide");
-        }
         if (collision.gameObject.layer == groundLayer)
         {
             rb.linearVelocityX = 0.0f;
