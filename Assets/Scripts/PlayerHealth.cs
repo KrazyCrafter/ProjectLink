@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator Death()
     {
         Debug.Log("Died");
+        GetComponent<Grappler>().RemoveWeb();
         TimesDied++;
         yield return new WaitForSeconds(2);
         Respawn();

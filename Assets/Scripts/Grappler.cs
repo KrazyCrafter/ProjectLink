@@ -79,7 +79,7 @@ public class Grappler : MonoBehaviour
         // StartCoroutine(StretchWeb());
     }
 
-    private void RemoveWeb()
+    public void RemoveWeb()
     {
         isGrappling = false;
         lr.enabled = false;
