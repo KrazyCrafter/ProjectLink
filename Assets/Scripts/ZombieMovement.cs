@@ -186,4 +186,11 @@ public class ZombieMovement : MonoBehaviour
             Attacked = true;
         }
     }
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Threat")
+        {
+            Destroy(gameObject);
+        }
+    }
 }
