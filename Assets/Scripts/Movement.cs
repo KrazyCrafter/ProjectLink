@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -62,7 +63,7 @@ public class Movement : MonoBehaviour
     private void ProcessMovement()
     {
         Vector2 velocity = transform.right * horizontal * moveSpeed;
-        if(grappler.isGrappling)
+        if(!isGrounded && (Math.Abs(rb.linearVelocityX) > Math.Abs(velocity.x)))
         {
             // if(transform.position.y > dj.connectedAnchor.y)
             // {
@@ -85,13 +86,17 @@ public class Movement : MonoBehaviour
             //     }
             // }
 
-            rb.AddForceX(velocity.x);
-
+            if(grappler.isGrappling)
+                rb.AddForceX(velocity.x);
         }
         else
         {
             rb.linearVelocityX = velocity.x;
         }
+
+        rb.linearVelocityY = Mathf.Min(rb.linearVelocityY, 15);
+
+        // Debug.Log("velocity: " + rb.linearVelocity);
     }
 
     // Reads jump input
