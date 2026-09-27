@@ -32,6 +32,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Died");
         isDead = true;
+        Movement.Instance.PlayAnimator();
         GetComponent<Grappler>().RemoveWeb();
         GetComponent<Grappler>().enabled = false;
         GetComponent<Movement>().enabled = false;

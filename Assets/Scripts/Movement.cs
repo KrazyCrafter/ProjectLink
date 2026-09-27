@@ -30,6 +30,11 @@ public class Movement : MonoBehaviour
     [SerializeField] private Grappler grappler;
     private Vector2 lastGoodPos;
 
+    void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -157,7 +162,7 @@ public class Movement : MonoBehaviour
         }
     }
 
-    private void PlayAnimator()
+    public void PlayAnimator()
     {
         if(PlayerHealth.Instance.isDead)
         {
