@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private DistanceJoint2D dj;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 8f;
@@ -28,13 +29,14 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dj = GetComponent<DistanceJoint2D>();
         grappler = GetComponent<Grappler>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        GroundCheck();
+        canJump = GroundCheck();
         ProcessMovement();
         ProcessGravity();
     }
@@ -53,6 +55,10 @@ public class Movement : MonoBehaviour
         Vector2 velocity = transform.right * horizontal * moveSpeed;
         if(grappler.isGrappling)
         {
+            if(transform.position.y > dj.connectedAnchor.y)
+            {
+                rb.linearVelocity = Vector2.zero;
+            }
             if(velocity.x == 0)
             {
                 rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
@@ -110,7 +116,6 @@ public class Movement : MonoBehaviour
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckArea, 0, groundLayer))
         {
             // Debug.Log("isGrounded == true");
-            canJump = true;
             return isGrounded = true;
         }
         // Debug.Log("isGrounded == false");
