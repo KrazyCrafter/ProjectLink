@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Schematicannon
       objectReference: {fileID: 0}
+    - target: {fileID: 1641155097481889167, guid: af9e5281d78b2f14d98c4937cac1ce01, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1781235497835312201, guid: af9e5281d78b2f14d98c4937cac1ce01, type: 3}
       propertyPath: m_LocalPosition.x
       value: 82.984566
@@ -37864,7 +37868,8 @@ GameObject:
   - component: {fileID: 1261251049}
   - component: {fileID: 1261251051}
   - component: {fileID: 1261251050}
-  m_Layer: 0
+  - component: {fileID: 1261251052}
+  m_Layer: 6
   m_Name: Islands
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40106,6 +40111,44 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &1261251052
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261251048}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1001 &1300502455
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -79,6 +79,7 @@ GameObject:
   - component: {fileID: 1540594745435799581}
   - component: {fileID: 9059310339462053815}
   - component: {fileID: 3903615333740231732}
+  - component: {fileID: -2954042072164879741}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -177,12 +178,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   moveSpeed: 8
   jumpPower: 10
-  baseGravity: 1
+  baseGravity: 2
   groundCheckPos: {fileID: 70278476430739653}
   groundCheckArea: {x: 0.35, y: 0.05}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  grappler: {fileID: 0}
 --- !u!114 &4054533748075655014
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,6 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7a8d4c1307cec649b84281892defdd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Grappler
+  isGrappling: 0
   grappleLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -486,6 +489,20 @@ DistanceJoint2D:
   m_AutoConfigureDistance: 1
   m_Distance: 0.005
   m_MaxDistanceOnly: 0
+--- !u!114 &-2954042072164879741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7936590004904011770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f338c59d90ce8e94ab4396e165ff7766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
+  Health: 0
+  SpawnPoint: {x: 0, y: 0}
 --- !u!1001 &1173839756953443437
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ public class Grappler : MonoBehaviour
     private Rigidbody2D rb;
     private LineRenderer lr;
     private DistanceJoint2D dj;
-    private bool isGrappling;
+    public bool isGrappling;
     [SerializeField] private LayerMask grappleLayer;
     private Vector2 mousePos;
 

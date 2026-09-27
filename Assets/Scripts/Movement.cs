@@ -23,10 +23,12 @@ public class Movement : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     private bool isGrounded;
 
+    [SerializeField] private Grappler grappler;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        grappler = GetComponent<Grappler>();
     }
 
     // Update is called once per frame
@@ -49,8 +51,29 @@ public class Movement : MonoBehaviour
     private void ProcessMovement()
     {
         Vector2 velocity = transform.right * horizontal * moveSpeed;
+        if(grappler.isGrappling)
+        {
+            if(velocity.x == 0)
+            {
+                rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
+            }
+            else
+            {
+                if(velocity.x < 0)
+                {
+                    rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 3);
+                }
+                else if (velocity.x > 0)
+                {
+                    rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 3);
+                }
 
-        rb.linearVelocityX = velocity.x;
+            }
+        }
+        else
+        {
+            rb.linearVelocityX = velocity.x;
+        }
     }
 
     // Reads jump input
@@ -99,5 +122,16 @@ public class Movement : MonoBehaviour
         // Draws GroundCheck in green.
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckArea);
+    }
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(grappler.isGrappling)
+        {
+            Debug.Log("GrappleCollide");
+        }
+        if (collision.gameObject.layer == groundLayer)
+        {
+            rb.linearVelocityX = 0.0f;
+        }
     }
 }
