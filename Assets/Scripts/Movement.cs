@@ -94,10 +94,11 @@ public class Movement : MonoBehaviour
             // }
 
             if(grappler.isGrappling)
-            {
-                rb.AddForceX(velocity.x);
-            }
+                rb.AddForceX(velocity.x/3);
+            else
+                rb.linearVelocityX -= Time.deltaTime / 7.5f * rb.linearVelocityX;
         }
+        
         else
         {
             rb.linearVelocityX = velocity.x;
