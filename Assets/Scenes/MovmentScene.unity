@@ -1125,8 +1125,16 @@ PrefabInstance:
       value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 3903615333740231732, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
+      propertyPath: m_MaxDistanceOnly
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3903615333740231732, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
       propertyPath: m_AutoConfigureDistance
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6667569134637865757, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
+      propertyPath: baseGravity
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7903836509589559582, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1142,7 +1150,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9059310339462053815, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
       propertyPath: m_Parameters.widthMultiplier
-      value: 0.25
+      value: 0.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

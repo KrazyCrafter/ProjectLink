@@ -32,7 +32,6 @@ public class Grappler : MonoBehaviour
     {
         if(isGrappling)
         {
-            lr.enabled = true;
             lr.SetPosition(0, transform.position);
             lr.SetPosition(1, dj.connectedAnchor);
         }
@@ -48,10 +47,12 @@ public class Grappler : MonoBehaviour
     {
         if(context.performed)
         {
+            Debug.Log("Web");
             SpawnWeb();
         }
         else if(context.canceled)
         {
+            Debug.Log("Cancel");
             RemoveWeb();
         }
     }
