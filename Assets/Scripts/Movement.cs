@@ -57,7 +57,7 @@ public class Movement : MonoBehaviour
         {
             if(transform.position.y > dj.connectedAnchor.y)
             {
-                rb.linearVelocity = new Vector2(0.0f, 0.0f);
+                rb.linearVelocity = Vector2.zero;
             }
             if(velocity.x == 0)
             {
