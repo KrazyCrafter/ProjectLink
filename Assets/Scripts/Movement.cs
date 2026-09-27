@@ -3,8 +3,10 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    public static Movement Instance { get; private set; }
     private Rigidbody2D rb;
     private DistanceJoint2D dj;
+    private SpriteRenderer sr;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 8f;
@@ -25,11 +27,14 @@ public class Movement : MonoBehaviour
     private bool isGrounded;
 
     [SerializeField] private Grappler grappler;
+    private Vector2 lastGoodPos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         dj = GetComponent<DistanceJoint2D>();
+        sr = GetComponent<SpriteRenderer>();
         grappler = GetComponent<Grappler>();
     }
 
@@ -38,6 +43,7 @@ public class Movement : MonoBehaviour
     {
         canJump = GroundCheck();
         ProcessMovement();
+        ProcessLastGoodPos();
         ProcessGravity();
     }
 
@@ -47,6 +53,9 @@ public class Movement : MonoBehaviour
         Vector2 movement = context.ReadValue<Vector2>();
 
         horizontal = movement.x;
+
+        if(horizontal != 0f)
+            sr.flipY = horizontal < 0;
     }
 
     // Processes the movement of the player
@@ -55,26 +64,29 @@ public class Movement : MonoBehaviour
         Vector2 velocity = transform.right * horizontal * moveSpeed;
         if(grappler.isGrappling)
         {
-            if(transform.position.y > dj.connectedAnchor.y)
-            {
-                rb.linearVelocity = Vector2.zero;
-            }
-            if(velocity.x == 0)
-            {
-                rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
-            }
-            else
-            {
-                if(velocity.x < 0)
-                {
-                    rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 5);
-                }
-                else if (velocity.x > 0)
-                {
-                    rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 5);
-                }
+            // if(transform.position.y > dj.connectedAnchor.y)
+            // {
+            //     rb.linearVelocity = Vector2.zero;
+            // }
 
-            }
+            // if(velocity.x == 0)
+            // {
+            //     rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
+            // }
+            // else
+            // {
+            //     if(velocity.x < 0)
+            //     {
+            //         rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 5);
+            //     }
+            //     else if (velocity.x > 0)
+            //     {
+            //         rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 5);
+            //     }
+            // }
+
+            rb.AddForceX(velocity.x);
+
         }
         else
         {
@@ -122,17 +134,23 @@ public class Movement : MonoBehaviour
         return isGrounded = false;
     }
 
+    public void ProcessLastGoodPos()
+    {
+        if(Physics2D.OverlapCapsule(transform.position, new Vector2(1.0f, 2.0f), CapsuleDirection2D.Vertical, 0.0f, groundLayer))
+        {
+            rb.linearVelocity = Vector2.zero;
+            transform.position = lastGoodPos;
+        }
+        else
+        {
+            lastGoodPos = transform.position;
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         // Draws GroundCheck in green.
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckArea);
-    }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.layer == groundLayer)
-        {
-            rb.linearVelocityX = 0.0f;
-        }
     }
 }
