@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int Level;
     public static int TimesDied;
     public bool isDead;
+    public Image[] Hearts;
 
     void Awake()
     {
@@ -40,6 +42,17 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         Health -= damage;
+        for(int i = 0; i < Hearts.Length; i++)
+        {
+            if(i < Health)
+            {
+                Hearts[i].color = new Color(1, 1, 1, 1);
+            }
+            else
+            {
+                Hearts[i].color = new Color(1, 1, 1, 0);
+            }
+        }
         if(Health <= 0)
         {
             StartCoroutine(Death());
