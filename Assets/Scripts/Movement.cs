@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Movement : MonoBehaviour
 {
+    public static Movement Instance { get; private set; }
     private Rigidbody2D rb;
     private DistanceJoint2D dj;
 
@@ -25,6 +26,8 @@ public class Movement : MonoBehaviour
     private bool isGrounded;
 
     [SerializeField] private Grappler grappler;
+    private Vector2 lastGoodPos;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -38,6 +41,7 @@ public class Movement : MonoBehaviour
     {
         canJump = GroundCheck();
         ProcessMovement();
+        ProcessLastGoodPos();
         ProcessGravity();
     }
 
@@ -55,10 +59,11 @@ public class Movement : MonoBehaviour
         Vector2 velocity = transform.right * horizontal * moveSpeed;
         if(grappler.isGrappling)
         {
-            if(transform.position.y > dj.connectedAnchor.y)
-            {
-                rb.linearVelocity = Vector2.zero;
-            }
+            // if(transform.position.y > dj.connectedAnchor.y)
+            // {
+            //     rb.linearVelocity = Vector2.zero;
+            // }
+
             if(velocity.x == 0)
             {
                 rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
@@ -122,21 +127,23 @@ public class Movement : MonoBehaviour
         return isGrounded = false;
     }
 
+    public void ProcessLastGoodPos()
+    {
+        if(Physics2D.OverlapCapsule(transform.position, new Vector2(1.0f, 2.0f), CapsuleDirection2D.Vertical, 0.0f, groundLayer))
+        {
+            rb.linearVelocity = Vector2.zero;
+            transform.position = lastGoodPos;
+        }
+        else
+        {
+            lastGoodPos = transform.position;
+        }
+    }
+
     void OnDrawGizmosSelected()
     {
         // Draws GroundCheck in green.
         Gizmos.color = Color.green;
         Gizmos.DrawWireCube(groundCheckPos.position, groundCheckArea);
-    }
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(grappler.isGrappling)
-        {
-            Debug.Log("GrappleCollide");
-        }
-        if (collision.gameObject.layer == groundLayer)
-        {
-            rb.linearVelocityX = 0.0f;
-        }
     }
 }
