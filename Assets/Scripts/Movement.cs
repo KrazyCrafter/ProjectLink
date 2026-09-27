@@ -6,6 +6,7 @@ public class Movement : MonoBehaviour
     public static Movement Instance { get; private set; }
     private Rigidbody2D rb;
     private DistanceJoint2D dj;
+    private SpriteRenderer sr;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 8f;
@@ -33,6 +34,7 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         dj = GetComponent<DistanceJoint2D>();
+        sr = GetComponent<SpriteRenderer>();
         grappler = GetComponent<Grappler>();
     }
 
@@ -51,6 +53,9 @@ public class Movement : MonoBehaviour
         Vector2 movement = context.ReadValue<Vector2>();
 
         horizontal = movement.x;
+
+        if(horizontal != 0f)
+            sr.flipY = horizontal < 0;
     }
 
     // Processes the movement of the player
