@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     private Rigidbody2D rb;
+    private DistanceJoint2D dj;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 8f;
@@ -28,6 +29,7 @@ public class Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dj = GetComponent<DistanceJoint2D>();
         grappler = GetComponent<Grappler>();
     }
 
@@ -53,6 +55,10 @@ public class Movement : MonoBehaviour
         Vector2 velocity = transform.right * horizontal * moveSpeed;
         if(grappler.isGrappling)
         {
+            if(transform.position.y > dj.connectedAnchor.y)
+            {
+                rb.linearVelocity = new Vector2(0.0f, 0.0f);
+            }
             if(velocity.x == 0)
             {
                 rb.linearVelocityX -= rb.linearVelocityX * Time.deltaTime/5;
