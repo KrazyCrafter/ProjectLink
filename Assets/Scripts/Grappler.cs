@@ -59,15 +59,16 @@ public class Grappler : MonoBehaviour
 
     private void SpawnWeb()
     {
-        if(Physics2D.OverlapCircle(mousePos, 0.1f, grappleLayer))
+        RaycastHit2D hit;
+        if(hit = Physics2D.Raycast(transform.position, new Vector3(mousePos.x, mousePos.y, 0.0f) - transform.position, 10f, grappleLayer))
         {
             isGrappling = true;
             lr.enabled = true;
             lr.SetPosition(0, transform.position);
-            lr.SetPosition(1, mousePos);
+            lr.SetPosition(1, hit.point);
 
             dj.enabled = true;
-            dj.connectedAnchor = mousePos;
+            dj.connectedAnchor = hit.point;
         }
         // webObject.transform.position = grappleSpawn.position;
         // webRenderer.enabled = true;
