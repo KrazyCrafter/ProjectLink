@@ -1351,10 +1351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 3327081780169082614, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1638211844}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
 --- !u!1 &974665244
@@ -104358,11 +104355,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 7
---- !u!4 &1410874822 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3327081780169082614, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
-  m_PrefabInstance: {fileID: 962188694}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1474779387
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104505,6 +104497,7 @@ GameObject:
   - component: {fileID: 1638211847}
   - component: {fileID: 1638211846}
   - component: {fileID: 1638211845}
+  - component: {fileID: 1638211848}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -104521,11 +104514,11 @@ Transform:
   m_GameObject: {fileID: 1638211843}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -10}
+  m_LocalPosition: {x: -27.44, y: -8.23, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1410874822}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1638211845
 MonoBehaviour:
@@ -104612,9 +104605,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 34
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8.619406
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -104630,6 +104623,38 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1638211848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1638211843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBrain
+  ShowDebugText: 0
+  ShowCameraFrustum: 1
+  IgnoreTimeScale: 0
+  WorldUpOverride: {fileID: 0}
+  ChannelMask: -1
+  UpdateMethod: 2
+  BlendUpdateMethod: 1
+  LensModeOverride:
+    Enabled: 0
+    DefaultMode: 2
+  DefaultBlend:
+    Style: 1
+    Time: 2
+    CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  CustomBlends: {fileID: 0}
 --- !u!1001 &1684672481
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -104899,3 +104924,4 @@ SceneRoots:
   - {fileID: 188121868}
   - {fileID: 2013961556}
   - {fileID: 1474779387}
+  - {fileID: 1638211844}
