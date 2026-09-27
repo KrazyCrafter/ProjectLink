@@ -77,11 +77,11 @@ public class Movement : MonoBehaviour
             {
                 if(velocity.x < 0)
                 {
-                    rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 3);
+                    rb.linearVelocityX = Mathf.Max(-15f, rb.linearVelocityX + velocity.x / 5);
                 }
                 else if (velocity.x > 0)
                 {
-                    rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 3);
+                    rb.linearVelocityX = Mathf.Min(15f, rb.linearVelocityX + velocity.x / 5);
                 }
 
             }
