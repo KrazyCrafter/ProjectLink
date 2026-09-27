@@ -43,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Altar")
         {
+            MainMenuScript.LevelsBeaten = Level;
             if(Level < 6)
             {
                 SceneManager.LoadScene(Level + 1);
