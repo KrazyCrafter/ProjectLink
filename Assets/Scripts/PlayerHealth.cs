@@ -5,9 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public static PlayerHealth Instance { get; private set; }
     [SerializeField] private int Health;
     [SerializeField] private int Level;
     public static int TimesDied;
+    public bool isDead;
+
+    void Awake()
+    {
+        Instance = this;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,11 +23,13 @@ public class PlayerHealth : MonoBehaviour
     }
     private void Respawn()
     {
+        isDead = false;
         SceneManager.LoadScene(Level);
     }
     IEnumerator Death()
     {
         Debug.Log("Died");
+        isDead = true;
         GetComponent<Grappler>().RemoveWeb();
         TimesDied++;
         yield return new WaitForSeconds(2);

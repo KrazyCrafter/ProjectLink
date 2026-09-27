@@ -160,11 +160,21 @@ public class Movement : MonoBehaviour
 
     private void PlayAnimator()
     {
-        if(Mathf.Abs(rb.linearVelocityX) > 0f && isGrounded)
+        if(PlayerHealth.Instance.isDead)
+        {
+            playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isSwinging", false);
+            playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isFalling", false);
+
+            playerAnimator.SetBool("isDead", true);
+        }
+        else if(Mathf.Abs(rb.linearVelocityX) > 0f && isGrounded)
         {
             playerAnimator.SetBool("isSwinging", false);
             playerAnimator.SetBool("isJumping", false);
             playerAnimator.SetBool("isFalling", false);
+            playerAnimator.SetBool("isDead", false);
 
             playerAnimator.SetBool("isRunning", true);
         }
@@ -173,6 +183,7 @@ public class Movement : MonoBehaviour
             playerAnimator.SetBool("isFalling", false);
             playerAnimator.SetBool("isRunning", false);
             playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isDead", false);
 
             playerAnimator.SetBool("isSwinging", true);
         }
@@ -181,6 +192,7 @@ public class Movement : MonoBehaviour
             playerAnimator.SetBool("isSwinging", false);
             playerAnimator.SetBool("isRunning", false);
             playerAnimator.SetBool("isJumping", false);
+            playerAnimator.SetBool("isDead", false);
 
             playerAnimator.SetBool("isFalling", true);
         }
@@ -189,11 +201,13 @@ public class Movement : MonoBehaviour
             playerAnimator.SetBool("isSwinging", false);
             playerAnimator.SetBool("isFalling", false);
             playerAnimator.SetBool("isRunning", false);
+            playerAnimator.SetBool("isDead", false);
             
             playerAnimator.SetBool("isJumping", true);
         }
         else
         {
+            playerAnimator.SetBool("isDead", false);
             playerAnimator.SetBool("isFalling", false);
             playerAnimator.SetBool("isRunning", false);
             playerAnimator.SetBool("isJumping", false);
