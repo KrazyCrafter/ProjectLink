@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Health = 3;
     }
-    private void Respawn()
+    public void Respawn()
     {
         isDead = false;
         SceneManager.LoadScene(Level);
