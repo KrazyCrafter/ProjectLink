@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Threat
   - Altar
+  - Prison
   layers:
   - Default
   - TransparentFX

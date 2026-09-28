@@ -9,6 +9,10 @@ public class PlayerHealth : MonoBehaviour
     public static PlayerHealth Instance { get; private set; }
     [SerializeField] private int Health;
     [SerializeField] private int Level;
+
+    public static int KeysFound;
+    public static int CiviliansSaved;
+
     public static int TimesDied;
     public bool isDead;
     public Image[] Hearts;
@@ -67,7 +71,7 @@ public class PlayerHealth : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Altar")
         {
-            MainMenuScript.LevelsBeaten = Level;
+            MainMenuScript.LevelsBeaten = Mathf.Max(Level, MainMenuScript.LevelsBeaten);
             if(Level < 6)
             {
                 SceneManager.LoadScene(Level + 1);
