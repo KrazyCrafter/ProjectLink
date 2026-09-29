@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -13,9 +14,11 @@ public class PlayerHealth : MonoBehaviour
     public static int KeysFound;
     public static int CiviliansSaved;
 
-    public static int TimesDied;
+    public static int TimesDied = 0;
     public bool isDead;
     public Image[] Hearts;
+
+    public TextMeshProUGUI DeathCounter;
 
     void Awake()
     {
@@ -26,6 +29,14 @@ public class PlayerHealth : MonoBehaviour
     void Start()
     {
         Health = 3;
+        if (TimesDied > 0)
+        {
+            DeathCounter.text = "Deaths: " + TimesDied;
+        }
+        else
+        {
+            DeathCounter.gameObject.SetActive(false);
+        }
     }
     public void Respawn()
     {
