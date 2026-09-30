@@ -57,6 +57,13 @@ public class MainMenuScript : MonoBehaviour
             SceneManager.LoadScene(level);
         }
     }
+    public void NewGame()
+    {
+        PlayerHealth.CiviliansSaved = 0;
+        PlayerHealth.KeysFound = 0;
+        PlayerHealth.TimesDied = 0;
+        LoadLevel(1);
+    }
     public void OpenMain()
     {
         ActiveScreen.SetActive(false);

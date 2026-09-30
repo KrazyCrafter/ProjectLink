@@ -10,6 +10,7 @@ public class PrisonCell : MonoBehaviour
     void Start()
     {
         BeenFound = false;
+        Released.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,7 +30,8 @@ public class PrisonCell : MonoBehaviour
         }
         else
         {
-            Instantiate(Released, transform.position, Quaternion.identity);
+            Released.SetActive(true);
+            PlayerHealth.CiviliansSaved++;
             Destroy(gameObject);
         }
     }

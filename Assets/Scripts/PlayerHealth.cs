@@ -11,8 +11,8 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] private int Health;
     [SerializeField] private int Level;
 
-    public static int KeysFound;
-    public static int CiviliansSaved;
+    public static int KeysFound = 0;
+    public static int CiviliansSaved = 0;
 
     public static int TimesDied = 0;
     public bool isDead;
@@ -46,7 +46,6 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator Death()
     {
         Debug.Log("Died");
-        isDead = true;
         Movement.Instance.PlayAnimator();
         GetComponent<Grappler>().RemoveWeb();
         GetComponent<Grappler>().enabled = false;
@@ -57,21 +56,25 @@ public class PlayerHealth : MonoBehaviour
     }
     public void TakeDamage(int damage)
     {
-        Health -= damage;
-        for(int i = 0; i < Hearts.Length; i++)
+        if (!isDead)
         {
-            if(i < Health)
+            Health -= damage;
+            for (int i = 0; i < Hearts.Length; i++)
             {
-                Hearts[i].color = new Color(1, 1, 1, 1);
+                if (i < Health)
+                {
+                    Hearts[i].color = new Color(1, 1, 1, 1);
+                }
+                else
+                {
+                    Hearts[i].color = new Color(1, 1, 1, 0);
+                }
             }
-            else
+            if (Health <= 0)
             {
-                Hearts[i].color = new Color(1, 1, 1, 0);
+                isDead = true;
+                StartCoroutine(Death());
             }
-        }
-        if(Health <= 0)
-        {
-            StartCoroutine(Death());
         }
     }
     public void OnCollisionEnter2D(Collision2D collision)
@@ -91,6 +94,15 @@ public class PlayerHealth : MonoBehaviour
             {
                 SceneManager.LoadScene(0);
             }
+        }
+    }
+    public void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.tag == "Key")
+        {
+            KeysFound = Mathf.Max(KeysFound, collider.gameObject.GetComponent<Key>().KeyID);
+            Destroy(collider.gameObject);
+            SceneManager.LoadScene(Level - 1);
         }
     }
 }

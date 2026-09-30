@@ -410,6 +410,10 @@ PrefabInstance:
       propertyPath: Hearts.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3008091905571595002, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3327081780169082614, guid: 19a76f55c16ef6541b441230937d8df1, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.5
@@ -1352,12 +1356,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1895394473}
         m_TargetAssemblyTypeName: MainMenuScript, Assembly-CSharp
-        m_MethodName: LoadLevel
-        m_Mode: 3
+        m_MethodName: NewGame
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
